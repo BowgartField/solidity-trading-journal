@@ -1,17 +1,25 @@
 {
   "name": "tradingjournal",
   "version": "1.0.0",
-  "description": "",
+  "description": "Trading journal in solidity language",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test" : "npx hardhat test",
+    "deploy" : "npx hardhat deploy",
+    "deploy:reset" : "npx hardhat deploy --reset",
+    "flatten" : "waffle flatten .waffle.json"
   },
-  "author": "",
+  "author": "Jean-Benoît",
   "license": "ISC",
   "dependencies": {
-    "@openzeppelin/contracts": "^4.3.2"
+    "@nomiclabs/hardhat-ethers": "yarn:hardhat-deploy-ethers",
+    "@openzeppelin/contracts": "^4.3.2",
+    "chai": "^4.3.4",
+    "ethers": "^5.4.7"
   },
   "devDependencies": {
-    "hardhat": "^2.6.4"
+    "ethereum-waffle": "^3.4.0",
+    "hardhat": "^2.6.4",
+    "hardhat-deploy": "^0.9.1"
   }
 }

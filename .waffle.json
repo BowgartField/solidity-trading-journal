@@ -1,0 +1,6 @@
+{
+    "compilerVersion": "./node_modules/solc",
+    "sourceDirectory": "./Contracts",
+    "outputDirectory": "./flatten",
+    "outputType": "all"
+ }
