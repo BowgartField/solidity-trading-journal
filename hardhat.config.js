@@ -3,7 +3,8 @@
  */
 
 require('hardhat-deploy');
-require("@nomiclabs/hardhat-ethers")
+require("@nomiclabs/hardhat-ethers");
+require("@nomiclabs/hardhat-waffle");
 
 const fs = require('fs')
 const mnemonic = fs.existsSync('./mnemonic') ? fs.readFileSync('mnemonic', 'utf-8').toString().replace("\r","").split("\n") : ''

@@ -1,10 +1,11 @@
 const { ethers, deployments, getNamedAccounts } = require("hardhat");
-const { expect } = require("chai");
+const { expect, assert } = require("chai");
 
 //Generate random journal's names
 const testJournalName = Math.random().toString(36).substr(2, 5);
 
 let tradingJournalApp;
+let tradingJournal;
 let user;
 
 describe("TradingJournalApp", function() {
@@ -21,27 +22,83 @@ describe("TradingJournalApp", function() {
     
     })
 
-    it("Create a new Journal called " + testJournalName, async function(){
-        
-        await tradingJournalApp.createJournal(testJournalName);
-        
+    describe("TradingJournalApp", function(){
+
+        it("Cannot create a new journal with empty name", async () => {
+
+            try{
+                await tradingJournalApp.createJournal("");
+                assert(false)
+            }catch(error){
+                assert(true)
+            }
+    
+            // expect(await tradingJournalApp.createJournal("")).to.be.revertedWith("TradingJournalApp::Journal's name cannot be empty")
+    
+        });
+    
+        it("Create a journal with name - " + testJournalName, async () => {
+            
+            await tradingJournalApp.createJournal(testJournalName);
+                    
+        });
+    
+        it("Cannot create journal with same name", async function(){
+    
+            try{
+                await tradingJournalApp.createJournal(testJournalName);
+                assert(false)
+            }catch(error){
+                assert(true)
+            }
+    
+            // expect(transac).to.be.revertedWith("TradingJournalApp::Journal already exist");
+    
+        });
+    
+        it("Verify journal exists", async function(){
+            
+            const journalExist = await tradingJournalApp.Exists(testJournalName,user);
+            expect(journalExist,true)
+    
+        });
+
+
     });
 
-    it("Verify journal exists", async function(){
+    describe('TradingJournal', () => {
 
-        const journalExist = await tradingJournalApp.Exists(testJournalName);
+        it("verify user is the journal's owner", async function(){
 
-        expect(journalExist == true)
-    });
+            const userJournalStruc = await tradingJournalApp.userToJournal(user,testJournalName);
+            const address = userJournalStruc['journalAddress'];
+    
+            // get deployed contract
+            const TradingJournal = await ethers.getContractFactory("TradingJournal",user);
+            tradingJournal = await TradingJournal.attach(address);
+    
+            const owner = await tradingJournal.owner();
+    
+            expect(owner,user);
+    
+        });
 
-    // it("verify trading journal's owner", async function(){});
+        it("Add Trade to journal", async function(){
 
-    it("Add Trade to journal", async function(){
+            console.log(tradingJournal)
 
-        await tradingJournalApp.addTrade(testJournalName,[
-            "Bitcoin","BTC",0,0,0,0,0,0 
-        ]);
+            await tradingJournal.addTrade(["Bitcoin","BTC",0,0,0,0,0,0]);
 
+            // try{
+               
+            //     assert(true);
+            // }catch(error){
+            //     console.log(error);
+            //     assert(false);
+            // }   
+        
+        });
+        
     });
 
 });

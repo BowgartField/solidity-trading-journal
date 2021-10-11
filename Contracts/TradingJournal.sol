@@ -10,6 +10,9 @@ contract TradingJournal is Ownable{
     address journalOwner;
     Trade[] trades;
 
+    // TODO: Complete event
+    event TradeAdded();
+
     constructor(address _journalOwner){
         journalOwner = _journalOwner;
     }
@@ -25,6 +28,11 @@ contract TradingJournal is Ownable{
         require(journalOwner == _journalOwner);
         journalOwner = _newJournalOwner;
     }
+
+    // TODO: Add functions which returns the first 25 journals of a use
+    function getTrades(string memory _journalName, address _journalOwner) public{
+        // TradingJournal(userToJournal[msg.sender][_journalName].journalAddress).getTrades(trade);
+    } 
     
 }
 

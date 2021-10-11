@@ -4,15 +4,16 @@
   "description": "Trading journal in solidity language",
   "main": "index.js",
   "scripts": {
-    "test" : "npx hardhat test",
-    "deploy" : "npx hardhat deploy",
-    "deploy:reset" : "npx hardhat deploy --reset",
-    "flatten" : "waffle flatten .waffle.json"
+    "test": "npx hardhat test",
+    "deploy": "npx hardhat deploy",
+    "deploy:reset": "npx hardhat deploy --reset",
+    "flatten": "waffle flatten .waffle.json"
   },
   "author": "Jean-Benoît",
   "license": "ISC",
   "dependencies": {
     "@nomiclabs/hardhat-ethers": "yarn:hardhat-deploy-ethers",
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
     "@openzeppelin/contracts": "^4.3.2",
     "chai": "^4.3.4",
     "ethers": "^5.4.7"
