@@ -1,6 +1,6 @@
 {
-  "name": "tradingjournal",
-  "version": "1.0.0",
+  "name": "solidity-trading-journal",
+  "version": "2.0.0",
   "description": "Trading journal in solidity language",
   "main": "index.js",
   "scripts": {
