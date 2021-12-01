@@ -1,13 +1,14 @@
 {
   "name": "solidity-trading-journal",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "description": "Trading journal in solidity language",
   "main": "index.js",
   "scripts": {
     "test": "npx hardhat test",
     "deploy": "npx hardhat deploy",
     "deploy:reset": "npx hardhat deploy --reset",
-    "flatten": "waffle flatten .waffle.json"
+    "flatten": "waffle flatten .waffle.json",
+    "full-test": "yarn deploy:reset & yarn test"
   },
   "author": "Jean-Benoît",
   "license": "ISC",
